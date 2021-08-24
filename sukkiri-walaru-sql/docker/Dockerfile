@@ -4,4 +4,6 @@ EXPOSE 3306
 
 ADD ./my.cnf /etc/mysql/conf.d/my.cnf
 
+RUN mkdir -p /var/lib/mysql-files
+
 CMD ["mysqld"]
