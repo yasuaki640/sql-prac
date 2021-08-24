@@ -5,11 +5,14 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./docker/db:/docker-entrypoint-initdb.d
+      - ./docker/db:/var/lib/mysql
+      - ./docker/my.cnf:/etc/mysql/my.cnf
+      - ./docker/log:/var/log/mysql
+    tty: true
+    command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
     environment:
       DB_NAMES: sukkiri
       MYSQL_DATABASE: sukkiri
       MYSQL_USER: sukkiri
       MYSQL_PASSWORD: sukkiri
       MYSQL_ROOT_PASSWORD: password
-    command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
